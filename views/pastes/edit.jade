@@ -1,0 +1,5 @@
+form(action='/pastes/'+ paste.code, method='POST', id='paste_form')
+  input(type='hidden', name='_method', value='PUT')
+  textarea(id='paste_body', type='text', name='body')=paste.body
+  p
+    input(type='submit', value='paste')
