@@ -6,7 +6,8 @@
 var express  = require('express');
 var util     = require('util');
 
-var app = module.exports = express.createServer();
+var app   = module.exports = express.createServer();
+var Paste = require('./models/paste').Paste;
 
 // Configuration
 
@@ -26,11 +27,6 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
-
-///// BEGIN paste.js //////
-var Paste = require('./models/paste').Paste;
-module.exports.Paste = Paste;
-///// END paste.js //////
 
 // ROUTES
 
