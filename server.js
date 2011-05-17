@@ -31,10 +31,8 @@ app.configure('production', function(){
 // ROUTES
 
 /// Index pastes
-//FIXME: Refactor this function:
-// Paste.find({}).sort('created_at', 'descending').limit(5).run .....
 app.get('/pastes', function (req, res) {
-  Paste.find({}).sort('created_at', 'descending').limit(5).run(function (err, pastes) {
+  Paste.findLastFive.run(function (err, pastes) {
     if(err) throw err.message;
     res.render('pastes/index', {title: 'Pastes', pastes: pastes});
   });
