@@ -1,5 +1,4 @@
-form(action='/pastes/'+ paste.code, method='POST', id='paste_form')
-  input(type='hidden', name='_method', value='PUT')
+form(action='/pastes', method='POST', id='paste_form')
   textarea(id='paste_body',
     type='text',
     name='body',
@@ -10,3 +9,4 @@ form(action='/pastes/'+ paste.code, method='POST', id='paste_form')
     required)=paste.body
   p
     input(type='submit', value='paste')
+
