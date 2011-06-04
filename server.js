@@ -70,8 +70,7 @@ app.get('/pastes/:code/edit', function (req, res) {
 
 /// Create paste
 app.post('/pastes', function(req, res){
-  var paste = new Paste();
-  paste.body = req.body.body;
+  var paste = new Paste({ body: req.body.body, preview: req.body.body, private: setPrivate(req.body.private) });
   paste.save(function (err) {
     if(err) {
       // throw err

@@ -3,6 +3,7 @@ var Schema   = mongoose.Schema;
 
 var Pastes = new Schema({
   body: { type: String },
+  preview : { type: String, set: preview },
   code: { type: String, default: generateCode, index: { unique : true } },
   created_at: { type: Date, default: Date.now }
 });
@@ -11,6 +12,10 @@ var Pastes = new Schema({
 Pastes.path('body').validate(function (v) {
   return v.length > 0;
 }, "Can't be blank");
+
+function preview(code) {
+  return code.substring(0, 100);
+}
 
 function generateCode() {
   return Math.floor(Math.random() * 1000000);
