@@ -5,9 +5,12 @@
 
 var express  = require('express');
 var util     = require('util');
+var nowjs    = require('now');
 
-var app   = module.exports = express.createServer();
-var Paste = require('./models/paste').Paste;
+var app      = module.exports = express.createServer();
+var everyone = nowjs.initialize(app);
+
+var Paste    = require('./models/paste').Paste;
 
 // Configuration
 
@@ -80,6 +83,9 @@ app.post('/pastes', function(req, res){
     else {
       console.log('saved');
       res.redirect('/pastes/'+ paste.code);
+      path = paste.private ? '/pastes/private/'+ paste._id : '/pastes/'+ paste.code;
+      everyone.now.prependPaste(paste);
+      res.redirect(path);
     }
   })
 });
