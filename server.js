@@ -91,7 +91,7 @@ app.post('/pastes', function(req, res){
     else {
       console.log('saved');
       path = paste.private ? '/pastes/private/'+ paste._id : '/pastes/'+ paste.code;
-      everyone.now.prependPaste(paste);
+      if(everyone.now.prependPaste) { everyone.now.prependPaste(paste); }
       res.redirect(path);
     }
   })
