@@ -1,0 +1,6 @@
+script(type='text/javascript')
+  now.prependPaste = function(paste){
+    $('#pastes').prepend("<li><span><a href='/pastes/" + paste.code +"'>view</a></span>"+ paste.preview +"</li>");
+  };
+ul#pastes
+  != partial("paste", pastes)

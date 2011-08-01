@@ -1,0 +1,13 @@
+textarea(id='paste_body',
+  type='text',
+  name='body',
+  cols='80',
+  rows='22',
+  placeholder='Paste your code here',
+  autofocus,
+  required)=paste.body
+p
+  input(id='private', type='checkbox', name='private')
+  label(for='private') private
+p
+  input(type='submit', value='paste')
