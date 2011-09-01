@@ -1,3 +1,4 @@
 form(action='/pastes/'+ paste.code, method='POST', id='paste_form')
   input(type='hidden', name='_method', value='PUT')
   != partial("form", {paste : paste})
+

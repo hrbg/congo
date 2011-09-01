@@ -2,10 +2,19 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/application.css')
     script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
     script(type="text/javascript", src="http://github.com/balupton/jquery-syntaxhighlighter/raw/master/scripts/jquery.syntaxhighlighter.min.js")
     script(type="text/javascript", src="/nowjs/now.js")
     script(type="text/javascript")
-      $.SyntaxHighlighter.init();      
-  body!= body
+      $.SyntaxHighlighter.init();
+  body
+    h1 Congo
+    div(class="content")
+      div(class="col1")
+        != body
+      div(class="col2")
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      div(class="clear")    
+

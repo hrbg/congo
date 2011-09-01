@@ -1,3 +1,4 @@
 code(class="highlight")=paste.body
 p
-  a(href="/pastes/" + paste.code + "/edit") Edit Paste
+  - if(editable) 
+    a(href="/pastes/" + paste.code + "/edit") Edit Paste

@@ -1,0 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=Michroma);
+
+body {
+   background: #97CCEE;
+   margin: 10px;
+}
+
+h1 {
+   color: #444444;
+   font-family: 'Michroma', sans-serif;
+   font-size: 40px;
+   margin-bottom: 15px;
+}
+
+.col1 {
+  float:left;
+  width:800px;
+  border: 1px solid #888;
+  padding: 20px 0 10px 20px;
+  -moz-box-shadow: 10px 10px 10px 10px #888;
+  -webkit-box-shadow: 10px 10px 10px 10px #888;
+  box-shadow: 10px 10px 10px 10px #888;
+
+}
+
+.col1 textarea {
+  width: 770px;
+}
+
+.col2 {
+   font-family: 'Michroma', sans-serif;
+   background:#F1F1F1;
+   float:left;
+   width:325px;
+   margin-left:50px;
+   color:#AE1215;
+   padding:10px;
+   line-height:30px
+}
+.clear {
+   clear:both;
+}
+
+code {
+   background: white;
+   width: 770px !important;
+}
