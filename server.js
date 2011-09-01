@@ -6,11 +6,12 @@
 var express  = require('express');
 var util     = require('util');
 var nowjs    = require('now');
+var sessions = require('cookie-sessions');
 
 var app      = module.exports = express.createServer();
 var everyone = nowjs.initialize(app);
-
 var Paste    = require('./models/paste').Paste;
+
 
 //// helpers
 
@@ -29,6 +30,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(express.cookieParser());
+  app.use(sessions({ secret: "keyboard cat" }));
 });
 
 app.configure('development', function(){
@@ -51,10 +54,11 @@ app.get('/pastes', function (req, res) {
 })
 
 /// Show paste
-app.get('/pastes/:code',  function (req, res) {
+app.get('/pastes/:code', function (req, res) {
+  var editable = req.socket.remoteAddress + req.headers['user-agent'] == res.cookie.sessionId;
   Paste.findOne({ code: req.params.code}, function (err, paste) {
     if(paste) {
-      res.render('pastes/show', {paste: paste, title: "Show paste"});
+      res.render('pastes/show', {paste: paste, title: "Show paste", editable: editable});
     }
     else {
       res.render('404', {title: "404"});
@@ -82,6 +86,8 @@ app.get('/pastes/:code/edit', function (req, res) {
 
 /// Create paste
 app.post('/pastes', function(req, res){
+  console.log(req.headers['user-agent'])
+  res.cookie.sessionId = req.socket.remoteAddress + req.headers['user-agent'];
   var paste = new Paste({ body: req.body.body, preview: req.body.body, private: setPrivate(req.body.private) });
   paste.save(function (err) {
     if(err) {
@@ -89,7 +95,6 @@ app.post('/pastes', function(req, res){
       res.redirect('/');
     }
     else {
-      console.log('saved');
       path = paste.private ? '/pastes/private/'+ paste._id : '/pastes/'+ paste.code;
       if(everyone.now.prependPaste) { everyone.now.prependPaste(paste); }
       res.redirect(path);
@@ -101,7 +106,7 @@ app.post('/pastes', function(req, res){
 /// Upadate paste 
 app.put('/pastes/:code', function (req,res) {
   Paste.findOne({ code: req.params.code}, function (err, paste) {
-    if(paste) {
+    if(paste && res.cookie.sessionId) {
       paste.body = req.body.body;
       paste.save(function (err) {
         if(err) res.render('pastes/'+ paste.code +'/edit', {paste: paste, title: "Edit paste"});
