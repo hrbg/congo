@@ -1,7 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Michroma);
 
-body {
+html {
    background: #97CCEE;
+   background: -moz-linear-gradient(-90deg, #f1f1f1, #97CCEE) fixed;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#97CCEE)) fixed;
+}
+body {
    margin: 10px;
 }
 
@@ -29,7 +33,7 @@ h1 {
 
 .col2 {
    font-family: 'Michroma', sans-serif;
-   background:#F1F1F1;
+   background:#FAFAFA;
    float:left;
    width:325px;
    margin-left:50px;
