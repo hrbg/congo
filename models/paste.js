@@ -12,7 +12,7 @@ var Pastes = new Schema({
 //Fixme: This also allows space only pasties 
 Pastes.path('body').validate(function (v) {
   return v.length > 0;
-}, "Can't be blank");
+}, "Body can't be blank");
 
 function preview(code) {
   return code.substring(0, 100);

@@ -31,7 +31,7 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
-  app.use(sessions({ secret: "keyboard cat" }));
+  app.use(express.session({ secret: "keyboard cat" }));
 });
 
 app.configure('development', function(){
